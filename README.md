@@ -14,3 +14,5 @@ line 17 : Change 'admin' to your admin wordpress user
 line 18 : Change 'pass' to your admin wordpress password
 
 line 19 : Type the amount of users you want to create
+
+Make sure chromedriver is the correct version for your current browser
