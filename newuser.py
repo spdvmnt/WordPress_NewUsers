@@ -29,17 +29,12 @@ def newuser():
         searchwppass = driver.find_element_by_name('pwd')
         searchwppass.send_keys(wppass)
         searchwppass.submit()
-
         time.sleep(2)
 
         for i in range(1000, 1000+usercount):
             newuser = 'member' + str(i)
             newemail = newuser + '@example.com'
             newpass = randomStringDigits(10)
-
-
-
-
 
             driver.get(domain + '/wp-admin/user-new.php')
 
@@ -57,7 +52,6 @@ def newuser():
             searchwppass2.send_keys(newpass)
             searchwppass2.submit()
             time.sleep(3)
-
 
             #print('User: ' + newuser + ' Password: ' + newpass)
             text_file = open("members.txt", "a")
