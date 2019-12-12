@@ -13,10 +13,12 @@ def randomStringDigits(stringLength=6):
 
 def newuser():
 
-        domain = 'https://member.example.com'
-        wpuser = 'admin'
-        wppass = 'pass'
-        usercount = 1000
+        domaininput = input('Domain (member.example.com):')
+        domain = 'https://' + domaininput
+        wpuser = input("WP Admin User:")
+        wppass = input('WP Admin Password:')
+        usercount = input('How many Users do you need? (500):')
+        startnumber = input('Where to start counting users? (1000):')
 
 
         current_folder = os.path.realpath(
@@ -31,7 +33,7 @@ def newuser():
         searchwppass.submit()
         time.sleep(2)
 
-        for i in range(1000, 1000+usercount):
+        for i in range(int(startnumber), int(startnumber)+int(usercount)):
             newuser = 'member' + str(i)
             newemail = newuser + '@example.com'
             newpass = randomStringDigits(10)
@@ -59,6 +61,7 @@ def newuser():
             text_file.close()
 
         driver.quit()
+        print('Work is Done!')
 
 if __name__ == '__main__':
     newuser()
