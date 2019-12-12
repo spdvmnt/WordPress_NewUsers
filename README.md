@@ -4,6 +4,7 @@ Modules:
 
 pip install selenium
 
+
 Prepare newuser.py file:
 
 line 16 : Change 'https://member.example.com' to your domain
