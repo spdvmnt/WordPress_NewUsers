@@ -1,8 +1,9 @@
 from selenium import webdriver
 import time
-import os, inspect
+import os, sys, inspect
 import random
 import string
+from sys import platform
 
 
 def randomStringDigits(stringLength=6):
@@ -23,8 +24,20 @@ def newuser():
 
         current_folder = os.path.realpath(
             os.path.abspath(os.path.split(inspect.getfile(inspect.currentframe()))[0]))
-        chromedriver1 = os.path.join(current_folder, "chromedriver")
-        driver = webdriver.Chrome(executable_path=chromedriver1)
+        #chromedriver1 = os.path.join(current_folder, "chromedriver")
+
+        if platform == "linux" or platform == "linux2":
+            linux = True
+        else:
+            linux = False
+
+        if linux == True:
+
+            firefoxdriver1 = os.path.join(current_folder, "geckodriver")
+        else:
+            firefoxdriver1 = os.path.join(sys._MEIPASS, "geckodriver.exe")
+
+        driver = webdriver.Firefox(executable_path=firefoxdriver1)
         driver.get(domain + '/wp-admin/user-new.php')
         searchwpuser = driver.find_element_by_name('log')
         searchwpuser.send_keys(wpuser)
@@ -51,7 +64,9 @@ def newuser():
 
             searchwppass2 = driver.find_element_by_name('pass1')
             searchwppass2.clear()
-            searchwppass2.send_keys(newpass)
+            for c in newpass:
+                searchwppass2.send_keys(c)
+                time.sleep(0.1)
             searchwppass2.submit()
             time.sleep(3)
 
